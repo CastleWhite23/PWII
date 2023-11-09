@@ -34,14 +34,14 @@ include(HEADER_TEMPLATE);
 
                 <div class="row">
 
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-4">
                         <label for="foto">Foto</label>
-                        <input type="file" class="form-control" id="foto" name="foto" required disabled>
+                        <input type="file" class="form-control" id="foto" name="foto" required  >
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="imgPreview">Pré visualização</label>
-                        <img class="form-control rounded" id="imgPreview" src="" alt="" srcset="">
+                        <img class="form-control rounded" id="imgPreview" src="./fotos/sem_imagem.jpg" alt="" srcset="">
                     </div>
 
                 </div>
@@ -55,3 +55,17 @@ include(HEADER_TEMPLATE);
             </form>
 
 <?php include(FOOTER_TEMPLATE); ?>
+        <script>
+            $(document).ready(() => {
+                $("#foto").change(function () {
+                    const file = this.files[0];
+                    if (file) {
+                        let reader = new FileReader();
+                        reader.onload = function (event) {
+                            $("#imgPreview").attr("src", event.target.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            });
+        </script>

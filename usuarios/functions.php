@@ -22,11 +22,19 @@
         $usuario = find("usuarios", $id);
     }
 
+
     /**
-    *  Cadastro de Clientes
+    *  Cadastro de Usuários
      */
     function add() {
         if (!empty($_POST['usuario'])) {
+            try{
+
+            }catch(Exception $e){
+                $_SESSION['message'] = 'Aconteceu um erro: ' . $e->getMessage();
+		        $_SESSION['type'] = 'danger';
+            }
+
             $usuario = $_POST['usuario'];
 
             save('usuarios', $usuario);
@@ -36,7 +44,7 @@
 
     
     /**
-     *	Atualizacao/Edicao de Cliente
+     *	Atualizacao/Edicao de Usuario
     */
     function edit() {
 
@@ -70,5 +78,14 @@
       
         header('location: index.php');
       }
+
+
+
+
+
+
+
+
+
 
 ?>
